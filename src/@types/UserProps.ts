@@ -2,5 +2,5 @@ export interface UserProps{
     id?: string,
     name?: string,
     email: string,
-    passowrd?: string,
+    password?: string,
 }
