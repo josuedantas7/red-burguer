@@ -53,7 +53,7 @@ model User {
   name           String?
   email          String    @unique
   hashedPassword String
-  emailVerified  DateTime?
+  role           String    @default("user")
   accounts       Account[]
   sessions       Session[]
 }
