@@ -40,6 +40,28 @@ export const authOptions : NextAuthOptions = {
             },
         })
     ],
+    callbacks: {
+        async session({ session }) {
+            const user = await prisma.user.findUnique({
+                where: {
+                    email: session?.user?.email ?? ''
+                }
+            })
+            if (user){
+                const newSession = {
+                    user: {
+                        ...session.user,
+                        id: user.id,
+                        role: user?.role,
+                    },
+                    expires: session.expires
+                }
+                return newSession
+            } else {
+                return session
+            }
+        }
+    },
     session: {
         strategy: "jwt"
     },
