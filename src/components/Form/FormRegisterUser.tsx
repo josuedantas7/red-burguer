@@ -6,6 +6,7 @@ import { UserProps } from '@/@types/UserProps'
 import { Notification } from '../Notifier/Notification'
 import { api } from '@/lib/api'
 import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export function FormRegisterUser() {
 
@@ -14,6 +15,8 @@ export function FormRegisterUser() {
     const [password,setPassword] = useState<string>('')
 
     const [isLoading,setIsLoading] = useState<boolean>(false)
+
+    const router = useRouter()
 
     async function handleRegisterUser(e: React.FormEvent<HTMLFormElement> | React.MouseEvent<HTMLButtonElement>) {
         e.preventDefault()
@@ -28,16 +31,17 @@ export function FormRegisterUser() {
             Notification('error', 'Preencha todos os campos')
         }
         try{
-            const response = await api.post('/api/user', {...data})
-            const responseLogin = await signIn('credentials', {
+            await api.post('/api/user', {...data})
+            await signIn('credentials', {
                 ...data,
-                callbackUrl: '/'
+                redirect: false
             })
-            console.log('responseLogin', responseLogin)
-            console.log('response post user', response)
+            router.push('/')
             Notification('success', 'Usuário cadastrado com sucesso')
         }catch{
             Notification('error', 'Erro ao cadastrar usuário')
+        }finally{
+            setIsLoading(false)
         }
 }
   return (
@@ -45,7 +49,7 @@ export function FormRegisterUser() {
         <InputPrimary value={name} onChange={setName} placeholder='Digite seu nome' type='text' />
         <InputPrimary value={email} onChange={setEmail} placeholder='Email' type='email' />
         <InputPrimary value={password} onChange={setPassword} placeholder='password' type='password' />
-        <Button onClick={(e) => handleRegisterUser(e)}>Cadastrar</Button>
+        <Button onClick={(e) => handleRegisterUser(e)}>{!isLoading ? 'Cadastrar' : 'Cadastrando...'}</Button>
     </form>
   )
 }
