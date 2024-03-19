@@ -16,10 +16,12 @@ export async function Header() {
     }
 
     return (
-        <div className='flex justify-center py-2 items-center gap-8 relative'>
-            <Link className='font-semibold hover:scale-110 duration-300' href={'/'}>Home</Link>
-            <Link className='font-semibold hover:scale-110 duration-300' href={'/cadastrar-produto'}>Cadastrar Produto</Link>
-            <Link className='font-semibold hover:scale-110 duration-300' href={'/cadastrar-categoria'}>Cadastrar Categoria</Link>
+        <div className='flex justify-center py-2 items-centerrelative'>
+            <div className='flex max-[480px]:flex-col justify-center gap-8 max-[480px]:gap-1 items-center'>
+                <Link className='font-semibold hover:scale-110 duration-300' href={'/'}>Home</Link>
+                <Link className='font-semibold hover:scale-110 duration-300' href={'/cadastrar-produto'}>Cadastrar Produto</Link>
+                <Link className='font-semibold hover:scale-110 duration-300' href={'/cadastrar-categoria'}>Cadastrar Categoria</Link>
+            </div>
             <ButtonSignOut/>
         </div>
     )

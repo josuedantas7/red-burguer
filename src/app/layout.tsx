@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import { NotifierProvider } from "@/components/Notifier/NotifierProvider";
+import { Header } from "@/components/Header/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AuthProvider>
           <NotifierProvider/>
+          <Header/>
           <main>
             {children}
           </main>
