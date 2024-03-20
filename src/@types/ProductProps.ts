@@ -7,5 +7,5 @@ export interface ProductProps {
     description?: string,
     image: string,
     idCategory?: string,
-    category: CategoryProps
+    category?: CategoryProps
 }
