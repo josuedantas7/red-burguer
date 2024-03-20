@@ -18,7 +18,7 @@ export function CardProduct({product} : { product : CardProductProps }) {
         <Image className='rounded-l-xl' src={product.image} width={144} height={144} alt='Burguer' />
         <div className='pl-4 relative flex flex-col gap-2'>
           <h2 className='font-semibold'>{product.name}</h2>
-          <p>{product?.description}</p>
+          <p className='text-sm'>{product?.description}</p>
           <h2 className='font-semibold absolute bottom-6 max-[550px]:bottom-2'>{formatPrice(product.price)}</h2>
         </div>
         <button>

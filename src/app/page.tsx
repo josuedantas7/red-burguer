@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { getServerSession } from "next-auth";
 
 import burguer from '/public/burguer.svg'
+import { ListItens } from "@/components/Menu/ListItens";
 
 export default async function Home() {
 
@@ -19,15 +20,12 @@ export default async function Home() {
   }
 
   return (
-    <div>
+    <div className="mb-20">
       <BannerHome/>
       <div>
         <h1 className="text-2xl text-center my-10 font-bold">Conheça nosso menu</h1>
         <div className="flex justify-center flex-wrap gap-[26px]">
-          <CardProduct product={product} />
-          <CardProduct product={product} />
-          <CardProduct product={product} />
-          <CardProduct product={product} />
+          <ListItens />
         </div>
       </div>
     </div>

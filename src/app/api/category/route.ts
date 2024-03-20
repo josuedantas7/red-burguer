@@ -11,17 +11,16 @@ export async function POST(request: Request){
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
     }
 
-    const { searchParams } = new URL(request.url)
-    const nameCategory = searchParams.get("name")
+    const { name } = await request.json()
 
-    if (!nameCategory) {
+    if (!name) {
         return NextResponse.json({ error: "Category is required" }, { status: 400 })
     }
 
     try{
         const category = await prisma.category.create({
             data: {
-                name: nameCategory
+                name: name
             }
         })
         return NextResponse.json(category, { status: 201 })

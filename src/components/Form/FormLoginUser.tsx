@@ -44,7 +44,7 @@ export function FormLoginUser() {
     }
 
   return (
-      <form className='w-full flex flex-col gap-2' onSubmit={(e) => handleLoginUser(e)}>
+    <form className='w-full flex flex-col gap-2' onSubmit={(e) => handleLoginUser(e)}>
         <InputPrimary value={email} onChange={setEmail} placeholder='Seu email' type='email' />
         <InputPrimary value={password} onChange={setPassword} placeholder='Sua senha...' type='password' />
         <Button onClick={(e) => handleLoginUser(e)}>{!isLoading ? 'Logar' : 'Logando...'}</Button>
