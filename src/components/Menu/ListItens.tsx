@@ -7,7 +7,7 @@ import { CardProduct } from '../Card/CardProduct'
 
 export function ListItens() {
 
-    const [allProducts,setAllProducts] = React.useState<ProductProps[]>([])
+    const [allProducts,setAllProducts] = React.useState<ProductProps[] | null>()
 
     useEffect(() => {
         async function getAllProducts(){
@@ -23,9 +23,13 @@ export function ListItens() {
 
   return (
     <div className="flex justify-center flex-wrap gap-[26px]">
-        {allProducts.map((product) => (
+        {allProducts && allProducts.length > 0 ? (allProducts.map((product) => (
             <CardProduct key={product.id} product={product} />
-        ))}
+        ))) : allProducts && allProducts.length === 0 ? (
+            <p>Nenhum produto cadastrado</p>
+        ) : (
+            <p>Carregando produtos...</p>
+        )}
     </div>
   )
 }
