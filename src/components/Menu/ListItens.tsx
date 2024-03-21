@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import { Notification } from '../Notifier/Notification'
 import { ProductProps } from '@/@types/ProductProps'
 import { CardProduct } from '../Card/CardProduct'
+import { LoadingComponent } from '../Loading/LoadingComponent'
 
 export function ListItens() {
 
@@ -28,7 +29,7 @@ export function ListItens() {
         ))) : allProducts && allProducts.length === 0 ? (
             <p>Nenhum produto cadastrado</p>
         ) : (
-            <p>Carregando produtos...</p>
+            <LoadingComponent />
         )}
     </div>
   )
