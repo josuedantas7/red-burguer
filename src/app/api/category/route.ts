@@ -43,13 +43,17 @@ export async function GET(request: Request){
 
     try{
         if (!id){
-            const categories = await prisma.category.findMany()
+            const categories = await prisma.category.findMany({
+                include: {
+                    products: true,
+                }
+            })
             return NextResponse.json(categories, { status: 200 })
         }else{
             const category = await prisma.category.findUnique({
                 where: {
                     id: id
-                }
+                },
             })
             return NextResponse.json(category, { status: 200 })
         }

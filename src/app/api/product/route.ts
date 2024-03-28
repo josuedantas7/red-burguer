@@ -37,7 +37,7 @@ export async function POST(request: Request){
 
     const { name, description, price, image, idCategory } = await request.json()
 
-    if (!name || !description || !price || !image || !idCategory){
+    if (!name || !price || !image || !idCategory){
         return NextResponse.json({error: 'All fields are required'}, {status: 400})
     
     }
