@@ -11,6 +11,7 @@ import {
   } from "@/components/ui/select"
 import { Button } from '@/components/ui/button'
 import { ButtonUpdateProduct } from '@/components/Button/ButtonUpdateProduct'
+import { ModalDeleteProduct } from '@/components/Modal/ModalDeleteProduct'
 
 const ProductId = async ({params} : {params : {params : string}}) => {
     
@@ -73,6 +74,7 @@ const ProductId = async ({params} : {params : {params : string}}) => {
             </Select>
             <ButtonUpdateProduct/>
         </form>
+        <ModalDeleteProduct id={productId?.id}/>
     </div>
   )
 }
