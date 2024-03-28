@@ -24,13 +24,15 @@ export async function TableListProducts() {
             <p className='text-center w-1/3'>Categoria:</p>
             <p className='text-end w-1/3'>Preço:</p>
         </div>
-        {products.map((product) => (
-            <Link href={`/product/${product.id}`} key={product.id} className='flex justify-between bg-gray-500 border border-green-500 py-1 rounded-md px-3 justify-between'>
-                <p className='w-1/3'>{product.name}</p>
-                <p className='text-center w-1/3'>{product.category.name}</p>
-                <p className='text-end w-1/3'>{formatPrice(product.price)}</p>
-            </Link>
-        ))}
+        <div className='flex flex-col gap-1.5'>
+            {products.map((product) => (
+                <Link href={`/product/${product.id}`} key={product.id} className='flex bg-gray-500 border border-green-500 py-1 rounded-md px-3 justify-between'>
+                    <p className='w-1/3'>{product.name}</p>
+                    <p className='text-center w-1/3'>{product.category.name}</p>
+                    <p className='text-end w-1/3'>{formatPrice(product.price)}</p>
+                </Link>
+            ))}
+        </div>
     </div>
   )
 }
