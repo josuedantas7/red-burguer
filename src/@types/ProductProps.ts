@@ -6,6 +6,7 @@ export interface ProductProps {
     price: number,
     description?: string,
     image: string,
+    quantity?: number,
     idCategory?: string,
     category?: CategoryProps
 }
