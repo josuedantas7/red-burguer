@@ -1,10 +1,14 @@
+'use client'
 import Image from 'next/image'
-import React from 'react'
-import burguer from '/public/burguer.svg'
+import React, { useContext } from 'react'
 import { MdOutlineAddShoppingCart } from "react-icons/md";
 import { CardProductProps } from '@/@types/TypesPropsComponents/CardProductProps';
+import { CartContext } from '@/context/CartContext';
 
 export function CardProduct({product} : { product : CardProductProps }) {
+
+  const { handleAddProduct } = useContext(CartContext)
+
 
   function formatPrice(price: number) {
     return new Intl.NumberFormat('pt-BR', {
@@ -21,7 +25,7 @@ export function CardProduct({product} : { product : CardProductProps }) {
           <p className='text-sm'>{product?.description}</p>
           <h2 className='font-semibold absolute bottom-6 max-[550px]:bottom-2'>{formatPrice(product.price)}</h2>
         </div>
-        <button>
+        <button onClick={() => handleAddProduct(product)}>
           <MdOutlineAddShoppingCart className='absolute bg-black text-white rounded w-[60px] h-[30px] py-1 right-0 bottom-3' />
         </button>
     </div>
