@@ -17,12 +17,28 @@ import { CartContext } from '@/context/CartContext'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { ButtonRemoveItem } from '../Button/ButtonRemoveItem'
+import { api } from '@/lib/api'
+import { Notification } from '../Notifier/Notification'
 
 export function ModalCartManagement({children} : { children : ReactNode }) {
 
     const { cart } = useContext(CartContext)
 
-    console.log(cart)
+
+    async function handleFinishOrder() {
+
+        const data = {
+            Products: cart
+        }
+
+        try{
+            const response = await api.post('/api/cart', {...data})
+            console.log(response.data)
+            Notification('success', 'Pedido finalizado com sucesso!')
+        }catch{
+            Notification('error', 'Erro ao finalizar pedido!')
+        }
+    }
 
 
     function formatPrice(price: number) {
@@ -65,7 +81,7 @@ export function ModalCartManagement({children} : { children : ReactNode }) {
             </AlertDialogHeader>
             <AlertDialogFooter>
             <AlertDialogCancel>Fechar</AlertDialogCancel>
-            <AlertDialogAction>Finalizar Pedido</AlertDialogAction>
+            <AlertDialogAction onClick={() => handleFinishOrder()}>Finalizar Pedido</AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>
     </AlertDialog>
