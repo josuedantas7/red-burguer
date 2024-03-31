@@ -21,6 +21,7 @@ export async function Header() {
                 <Link className='font-semibold hover:scale-110 duration-300' href={'/'}>Home</Link>
                 <Link className='font-semibold hover:scale-110 duration-300' href={'/cadastrar-produto'}>Cadastrar Produto</Link>
                 <Link className='font-semibold hover:scale-110 duration-300' href={'/cadastrar-categoria'}>Cadastrar Categoria</Link>
+                <Link className='font-semibold hover:scale-110 duration-300' href={'/pedidos'}>Pedidos</Link>
             </div>
             <ButtonSignOut/>
         </div>
