@@ -16,6 +16,7 @@ import {
 import { CartContext } from '@/context/CartContext'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
+import { ButtonRemoveItem } from '../Button/ButtonRemoveItem'
 
 export function ModalCartManagement({children} : { children : ReactNode }) {
 
@@ -44,7 +45,10 @@ export function ModalCartManagement({children} : { children : ReactNode }) {
                         return (
                             <div className='flex flex-col gap-1' key={item.id}>
                                 <span className='text-lg font-bold'>{item.name}</span>
-                                <span>Quantidade: {item.quantity}</span>
+                                <div className='flex justify-between'>
+                                    <span>Quantidade: {item.quantity}</span>
+                                    <ButtonRemoveItem product={item} />
+                                </div>
                                 <span>{item.quantity !== undefined ? formatPrice(item.price * item.quantity) : ''}</span>
                             </div>
                         )
