@@ -87,24 +87,25 @@ export function ModalCartManagement({children} : { children : ReactNode }) {
                         )
                     }) : <p className='text-center font-bold text-2xl'>Seu carrinho está vazio</p>}
 
-                    <div className='mt-5'>
-
-                        <form>
-                            <div>
-                                <Label>Endereço</Label>
-                                <Input onChange={(e) => setAddress(e.target.value)} type='text' placeholder='Digite seu endereço completo...' />
-                            </div>
-                            <div>
-                                <Label>Telefone</Label>
-                                <Input onChange={(e) => setPhone(e.target.value)} type='text' placeholder='Digite seu telefone...' />
-                            </div>
-                        </form>
-                    </div>
+                    {cart.length > 0 && (
+                        <div className='mt-5'>
+                            <form>
+                                <div>
+                                    <Label>Endereço</Label>
+                                    <Input onChange={(e) => setAddress(e.target.value)} type='text' placeholder='Digite seu endereço completo...' />
+                                </div>
+                                <div>
+                                    <Label>Telefone</Label>
+                                    <Input onChange={(e) => setPhone(e.target.value)} type='text' placeholder='Digite seu telefone...' />
+                                </div>
+                            </form>
+                        </div>
+                    )}
                 </div>
             </AlertDialogHeader>
             <AlertDialogFooter>
             <AlertDialogCancel>Fechar</AlertDialogCancel>
-            <AlertDialogAction onClick={() => handleFinishOrder()}>Finalizar Pedido</AlertDialogAction>
+            {cart.length > 0 && <AlertDialogAction onClick={() => handleFinishOrder()}>Finalizar Pedido</AlertDialogAction>}
             </AlertDialogFooter>
         </AlertDialogContent>
     </AlertDialog>
