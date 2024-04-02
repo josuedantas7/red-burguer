@@ -76,10 +76,22 @@ export default function ModalOrderId({children, id} : ModalOrderIdProps) {
                             </div>
                         
                     )) : <p className='text-center font-bold text-2xl'>Pedido não tem item</p>}
-                    <div className='flex justify-between mt-5'>
-                        <span className='text-lg font-bold'>Total:</span>
-                        <span className='text-lg font-bold'>{order ? formatPrice(order.cartProducts.reduce((acc, item) => acc + item.product.price * item.quantity, 0)) : ''}</span>
-                    </div>
+                    {order  && order.cartProducts.length > 0 && (
+                        <div className='border-t border-black mt-5'>
+                            <div className='flex gap-2 items-center mt-3'>
+                                <span className='text-lg font-bold'>Endereço:</span>
+                                <span>{order?.address}</span>
+                            </div>
+                            <div className='flex gap-2 items-center'>
+                                <span className='text-lg font-bold'>Telefone:</span>
+                                <span>{order?.phone}</span>
+                            </div>
+                            <div className='flex items-center justify-between mt-5'>
+                                <span className='text-lg font-bold'>Total:</span>
+                                <span className='text-lg font-bold'>{order ? formatPrice(order.cartProducts.reduce((acc, item) => acc + item.product.price * item.quantity, 0)) : ''}</span>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </AlertDialogHeader>
             <AlertDialogFooter>

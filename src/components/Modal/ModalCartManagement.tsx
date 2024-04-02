@@ -1,6 +1,6 @@
 'use client'
 
-import React, { ReactNode, useContext } from 'react'
+import React, { ReactNode, useContext, useState } from 'react'
 
 import {
     AlertDialog,
@@ -24,11 +24,28 @@ export function ModalCartManagement({children} : { children : ReactNode }) {
 
     const { cart } = useContext(CartContext)
 
+    const [address, setAddress] = useState<string>('')
+    const [phone,setPhone] = useState<string>('')
+
 
     async function handleFinishOrder() {
 
+        if (!phone && !address){
+            return Notification('error', 'Telefone e endereço não podem ser vazios!')
+        }
+
+        if (!phone){
+            return Notification('error', 'Telefone não pode ser vazio!')
+        }
+
+        if (!address){
+            return Notification('error', 'Endereço não pode ser vazio!')
+        }
+
         const data = {
-            Products: cart
+            Products: cart,
+            address,
+            phone
         }
 
         try{
@@ -73,8 +90,14 @@ export function ModalCartManagement({children} : { children : ReactNode }) {
                     <div className='mt-5'>
 
                         <form>
-                            <Label>Endereço</Label>
-                            <Input type='text' placeholder='Digite seu endereço completo...' />
+                            <div>
+                                <Label>Endereço</Label>
+                                <Input onChange={(e) => setAddress(e.target.value)} type='text' placeholder='Digite seu endereço completo...' />
+                            </div>
+                            <div>
+                                <Label>Telefone</Label>
+                                <Input onChange={(e) => setPhone(e.target.value)} type='text' placeholder='Digite seu telefone...' />
+                            </div>
                         </form>
                     </div>
                 </div>
