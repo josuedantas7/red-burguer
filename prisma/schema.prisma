@@ -84,6 +84,8 @@ model Cart {
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   cartProducts CartProduct[]
+  address      String
+  phone        String
 }
 
 model CartProduct {
