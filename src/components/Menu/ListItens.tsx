@@ -29,9 +29,9 @@ export function ListItens() {
                 allProducts.map((category) => (
                     category.products && category.products.length > 0 && (
                         <div className='flex flex-col gap-2' key={category.id}>
-                            <h1 className='text-2xl font-bold max-[1350px]:text-center'>{category.name}</h1>
+                            <h1 className='text-2xl font-bold text-start min-[860px]:text-center max-[860px]:pl-8 max-[480px]:pl-1.5'>{category.name}</h1>
                             {category.products && category.products?.length > 0 && (
-                                <div className='flex flex-wrap gap-5 max-[1350px]:justify-center'>
+                                <div className='flex flex-col gap-5 justify-center max-[860px]:justify-start max-[860px]:pl-8 max-[480px]:pl-1.5 max-[425px]:pl-0 max-[860px]:w-full mx-auto'>
                                     {
                                         category.products.map((product: ProductProps) => (
                                             <CardProduct key={product.id} product={product} />
