@@ -5,4 +5,6 @@ export interface OrdersProps {
     createdAt: string,
     updatedAt: string,
     cartProducts: CartProductsProps[]
+    address: string,
+    phone: string,
 }
