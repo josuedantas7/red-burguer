@@ -54,10 +54,13 @@ export async function GET(request: Request){
 
 export async function POST(request: Request){
     
-    const { Products } = await request.json()
+    const { Products, address, phone } = await request.json()
 
     const createCart = await prisma.cart.create({
-        data: {}
+        data: {
+            address: address,
+            phone: phone
+        }
     });
 
     try{
